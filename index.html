@@ -1179,7 +1179,7 @@
                     <a class="home-link" href="#work">View selected work →</a>
                 </div>
                 <div class="home-pixel-portrait">
-                    <img src="assets/pixel-yiyan.png" alt="Pixel-art portrait of Yiyan">
+                    <img src="web_info/assets/pixel-yiyan.png" alt="Pixel-art portrait of Yiyan" onerror="this.onerror=null;this.src='assets/pixel-yiyan.png'">
                 </div>
             </div>
         </section>
@@ -1204,11 +1204,11 @@
             <div class="section-inner">
                 <h1 class="section-title">About</h1>
                 <div class="about-layout">
-                    <img class="about-photo" src="me.jpg" alt="Portrait of Yiyan" loading="lazy">
+                    <img class="about-photo" src="web_info/me.jpg" alt="Portrait of Yiyan" loading="lazy" onerror="this.onerror=null;this.src='me.jpg'">
                     <div class="about-content">
                         <div class="about-item"><h2>Introduction</h2><p>Hi, I’m Yiyan.<br><br>An Interactive Media Arts student at NYU Tisch with a minor in Computer Science.<br><br>I’m passionate about exploring the intersection of creativity, technology, and human connection. I love turning imaginative ideas into playful, thoughtful experiences that spark curiosity and bring people closer together.<br><br>To me, technology is more than a tool — it’s a way to explore human emotions and bring more warmth into everyday life.</p></div>
                         <!-- <div class="about-item"><h2>Skill</h2><p class="skill-list">UX Design / Interaction Design / Creative Coding / AI / AR/VR / Physical Computing / Media Art</p></div> -->
-                        <div class="about-item"><h2>Resume</h2><p><a class="resume-link" href="Luo_Yiyan_Resume_F26.pdf" target="_blank" rel="noopener">View Resume →</a></p></div>
+                        <div class="about-item"><h2>Resume</h2><p><a class="resume-link" href="web_info/Luo_Yiyan_Resume_F26.pdf" target="_blank" rel="noopener">View Resume →</a></p></div>
                         <div class="about-item"><h2>Anime & Collecting</h2><p>I love exploring anime culture, collecting character merchandise, and sharing my favorite finds and fandom moments on <a href="https://www.xiaohongshu.com/user/profile/65959d6b0000000022006fb5?xsec_token=ABlB8daGpgrno0v5_aDaSGr3dQMOxZg9ehx-tTETrouDc%3D&amp;xsec_source=pc_search" target="_blank" rel="noopener">Xiaohongshu</a>.</p></div>
                         <div class="about-item"><h2>AI & Visual Exploration</h2><p>I experiment with AI-generated imagery to explore aesthetics, colors, and visual storytelling, sharing my creations on <a href="https://www.instagram.com/aiart_koenako/" target="_blank" rel="noopener">Instagram</a>.</p></div>
                     </div>
@@ -1234,7 +1234,8 @@
     </section>
 
     <script>
-        const asset = (path) => encodeURI(path);
+        const asset = (path) => encodeURI((location.pathname.includes("/web_info/") ? "" : "web_info/") + path);
+        document.querySelector(".resume-link").href = asset("Luo_Yiyan_Resume_F26.pdf");
         const figmaEmbed = (url) => `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`;
 
         const projects = {
