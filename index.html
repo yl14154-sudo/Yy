@@ -1183,13 +1183,13 @@
         }
     </style>
 <style id="lab-pet-home-hover">
-        .lab-hover-info { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:clamp(16px,2.5vw,30px); background:var(--pixel-panel); color:var(--pixel-ink); opacity:0; transform:translateY(8px); transition:opacity .35s ease,transform .35s ease; pointer-events:none; }
+        .lab-hover-info { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:clamp(16px,2.5vw,30px); background:#dceee5; color:var(--pixel-ink); opacity:0; transform:translateY(8px); transition:opacity .35s ease,transform .35s ease; pointer-events:none; }
         .lab-hover-info h3 { font-family:inherit; font-size:clamp(21px,2.4vw,30px); }
         .lab-hover-info p { font-size:14px; line-height:1.6; }
         .has-hover-info .lab-direct-link { z-index:2; }
-        .has-hover-info:is(:hover,:focus-within) .lab-hover-info { opacity:.96; transform:none; }
+        .has-hover-info:is(:hover,:focus-within) .lab-hover-info { opacity:1; transform:none; }
         .has-hover-info .lab-direct-link:focus-visible { outline:3px solid var(--pixel-gold); outline-offset:-5px; }
-        @media(hover:none) { .has-hover-info .lab-hover-info { opacity:.94; transform:none; } }
+        @media(hover:none) { .has-hover-info .lab-hover-info { opacity:1; transform:none; } }
         @media(prefers-reduced-motion:reduce) { .lab-hover-info { transition:none; } }
     </style></head>
 
