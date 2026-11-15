@@ -1198,6 +1198,11 @@
         #work .project-image, #lab .lab-media { padding:0; gap:0; overflow:hidden; }
         #work .project-image > img, #lab .lab-media > img { display:block; width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center; }
         #lab .lab-media > iframe { display:block; width:100%; height:100%; margin:0; border:0; }
+    </style><style id="bloom-documentation-grid">
+        #detail-images.bloom-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); max-width:940px; margin:30px auto 56px; gap:20px; }
+        #detail-images.bloom-gallery .detail-image { height:auto; aspect-ratio:3/2; }
+        #detail-images.bloom-gallery .detail-image img { width:100%; height:100%; display:block; object-fit:cover; }
+        @media(max-width:600px) { #detail-images.bloom-gallery { grid-template-columns:1fr; gap:16px; } }
     </style></head>
 
 <body>
@@ -1304,7 +1309,7 @@
                 ], next: "bloom"
             },
             bloom: {
-                category: "project", title: "Bloom Guard — A Wearable Exhibited at Tandon Gallery", cardDescription: "A wearable installation that turns unconscious finger-biting into a gentle moment of self-awareness through sensing, light, and vibration.", subtitle: "Bloom Guard: A Wearable Installation for Self-Awareness of Unconscious Bodily Harm", cover: "image", hero: asset("bloom-guard/cover.jpg"), video: "https://player.vimeo.com/video/1239154621?title=0&byline=0&portrait=0&dnt=1", images: [asset("bloom-guard/IMG_4713.JPG")], sections: [
+                category: "project", title: "Bloom Guard — A Wearable Exhibited at Tandon Gallery", cardDescription: "A wearable installation that turns unconscious finger-biting into a gentle moment of self-awareness through sensing, light, and vibration.", subtitle: "Bloom Guard: A Wearable Installation for Self-Awareness of Unconscious Bodily Harm", cover: "image", hero: asset("bloom-guard/cover.jpg"), video: "https://player.vimeo.com/video/1239154621?title=0&byline=0&portrait=0&dnt=1", images: [asset("bloom-guard/documentation-01.jpg"), asset("bloom-guard/documentation-02.jpg"), asset("bloom-guard/documentation-03.jpg"), asset("bloom-guard/documentation-04.jpg"), asset("bloom-guard/documentation-05.jpg"), asset("bloom-guard/documentation-06.jpg")], sections: [
                     ["Overview", "Bloom Guard is a soft wearable that explores the relationship between stress, emotion, and unconscious bodily habits."],
                     ["How It Works", "Inspired by my own finger-biting habit, the piece uses an Arduino BLE Sense, machine learning, and a pulse sensor to recognize biting-related movements. When the behavior is detected, a small flower on the glove lights up and gently vibrates, bringing attention back to the body."],
                     ["Idea", "The flower represents the fingers — fragile, living, and vulnerable. Rather than correcting the behavior, Bloom Guard creates a moment of awareness: a quiet conversation between the body and the self."]
@@ -1396,6 +1401,9 @@
             const prototype = document.getElementById("detail-prototype");
             prototype.innerHTML = project.prototype ? `<h2>Prototype</h2><iframe src="${project.prototype}" title="${project.title} prototype" allowfullscreen></iframe><a class="home-link" href="${project.external}" target="_blank" rel="noopener">Open prototype in Figma →</a>` : project.video ? `<h2>Process video</h2><iframe class="vimeo-player" src="${project.video}" title="${project.title} process video" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>` : "";
             const imageGrid = document.getElementById("detail-images");
+            imageGrid.classList.toggle("bloom-gallery", projectID === "bloom");
+            if (projectID === "bloom") prototype.before(imageGrid);
+            else prototype.after(imageGrid);
             imageGrid.innerHTML = project.images && project.images.length > 1 ? project.images.map((image) => `<div class="detail-image ${project.cover === "freshly" ? "freshly-screen" : ""}"><img src="${image}" alt="${project.title} documentation" loading="lazy"></div>`).join("") : "";
             window.currentProject = projectID;
             document.getElementById("next-project-button").style.display = project.next ? "block" : "none";
