@@ -1203,6 +1203,11 @@
         #detail-images.bloom-gallery .detail-image { height:auto; aspect-ratio:3/2; }
         #detail-images.bloom-gallery .detail-image img { width:100%; height:100%; display:block; object-fit:cover; }
         @media(max-width:600px) { #detail-images.bloom-gallery { grid-template-columns:1fr; gap:16px; } }
+    </style><style id="media-edge-cleanup">
+        .detail-prototype iframe.vimeo-player { height:auto; aspect-ratio:16/9; border:0; background:#000; box-shadow:none; }
+        .lab-media iframe.vimeo-player { background:#000; }
+        .detail-hero { min-height:0; }
+        .detail-hero > img { display:block; }
     </style></head>
 
 <body>
@@ -1302,14 +1307,14 @@
                 ], next: "cattachment"
             },
             cattachment: {
-                category: "project", title: "Cattachment — An Installation Exhibited at NYU ITP Spring Show 2026", cardDescription: "An interactive installation that makes attachment styles tangible through playful encounters with three responsive cats.", subtitle: "Cattachment: An interactive exploration of attachment", cover: "image", hero: asset("Cattachment/IMG_4711.JPG"), video: "https://player.vimeo.com/video/1239159446?title=0&byline=0&portrait=0&dnt=1", images: [asset("Cattachment/IMG_4711.JPG")], sections: [
+                category: "project", title: "Cattachment — An Installation Exhibited at NYU ITP Spring Show 2026", cardDescription: "An interactive installation that makes attachment styles tangible through playful encounters with three responsive cats.", subtitle: "Cattachment: An interactive exploration of attachment", cover: "image", hero: asset("Cattachment/IMG_4711.JPG"), video: "https://player.vimeo.com/video/1239159446?title=0&byline=0&portrait=0&dnt=1&transparent=0", images: [asset("Cattachment/IMG_4711.JPG")], sections: [
                     ["Overview", "What if attachment styles could be experienced rather than explained? Cattachment is an interactive installation that turns attachment theory into a playful, embodied experience. Players interact with three cats representing secure, anxious, and avoidant attachment styles through simple actions such as petting, waiting, and reconnecting."],
                     ["How It Works", "Each cat responds differently to the player’s behavior over time. Through changes in responsiveness, proximity, and emotional feedback, players gradually discover how different attachment patterns shape the experience of connection."],
                     ["Reflection", "Rather than presenting attachment theory as information to be read, Cattachment invites players to feel, observe, and reflect on relationship dynamics through interaction."]
                 ], next: "bloom"
             },
             bloom: {
-                category: "project", title: "Bloom Guard — A Wearable Exhibited at Tandon Gallery", cardDescription: "A wearable installation that turns unconscious finger-biting into a gentle moment of self-awareness through sensing, light, and vibration.", subtitle: "Bloom Guard: A Wearable Installation for Self-Awareness of Unconscious Bodily Harm", cover: "image", hero: asset("bloom-guard/cover.jpg"), video: "https://player.vimeo.com/video/1239154621?title=0&byline=0&portrait=0&dnt=1", images: [asset("bloom-guard/documentation-01.jpg"), asset("bloom-guard/documentation-02.jpg"), asset("bloom-guard/documentation-03.jpg"), asset("bloom-guard/documentation-04.jpg"), asset("bloom-guard/documentation-05.jpg"), asset("bloom-guard/documentation-06.jpg")], sections: [
+                category: "project", title: "Bloom Guard — A Wearable Exhibited at Tandon Gallery", cardDescription: "A wearable installation that turns unconscious finger-biting into a gentle moment of self-awareness through sensing, light, and vibration.", subtitle: "Bloom Guard: A Wearable Installation for Self-Awareness of Unconscious Bodily Harm", cover: "image", hero: asset("bloom-guard/cover.jpg"), video: "https://player.vimeo.com/video/1239154621?title=0&byline=0&portrait=0&dnt=1&transparent=0", images: [asset("bloom-guard/documentation-01.jpg"), asset("bloom-guard/documentation-02.jpg"), asset("bloom-guard/documentation-03.jpg"), asset("bloom-guard/documentation-04.jpg"), asset("bloom-guard/documentation-05.jpg"), asset("bloom-guard/documentation-06.jpg")], sections: [
                     ["Overview", "Bloom Guard is a soft wearable that explores the relationship between stress, emotion, and unconscious bodily habits."],
                     ["How It Works", "Inspired by my own finger-biting habit, the piece uses an Arduino BLE Sense, machine learning, and a pulse sensor to recognize biting-related movements. When the behavior is detected, a small flower on the glove lights up and gently vibrates, bringing attention back to the body."],
                     ["Idea", "The flower represents the fingers — fragile, living, and vulnerable. Rather than correcting the behavior, Bloom Guard creates a moment of awareness: a quiet conversation between the body and the self."]
@@ -1338,7 +1343,7 @@
             { category: "design", title: "Chance — UI/UX Design", src: asset("lab_design.png"), url: "https://www.figma.com/proto/vsZkcz7yvrsFpZRDCuxbz4/Designathon---Chance---UI-UX?node-id=28-3008&starting-point-node-id=28%3A3008&t=nExIPqY5L2h4iIOv-1", tone: "image" },
             { category: "design", title: "NYU Student Dashboard Redesign", description: projects.dashboard.cardDescription, src: projects.dashboard.hero, projectID: "dashboard", tone: "image" },
             { category: "ai", title: "Pet Home", description: "An AI Agent built for pet-first shopping, personalized discovery, and everyday pet care.", url: "https://app-763327352826.us-central1.run.app/", tone: "live" },
-            { category: "media", title: "The Story Of The Chocolate", src: "https://player.vimeo.com/video/1239154045?title=0&byline=0&portrait=0&dnt=1", tone: "vimeo" }
+            { category: "media", title: "The Story Of The Chocolate", src: "https://player.vimeo.com/video/1239154045?title=0&byline=0&portrait=0&dnt=1&transparent=0", tone: "vimeo" }
         ];
 
         const workOrder = ["cattachment", "bloom", "freshly"];
