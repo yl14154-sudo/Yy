@@ -1204,7 +1204,7 @@
         #detail-images.bloom-gallery .detail-image img { width:100%; height:100%; display:block; object-fit:cover; }
         @media(max-width:600px) { #detail-images.bloom-gallery { grid-template-columns:1fr; gap:16px; } }
     </style><style id="media-edge-cleanup">
-        .detail-prototype iframe.vimeo-player { height:auto; aspect-ratio:16/9; border:0; background:#000; box-shadow:none; }
+        .detail-prototype iframe.vimeo-player { height:auto; aspect-ratio:16/9; border:0; background:#000; box-shadow:8px 8px 0 #9b7d9d; }
         .lab-media iframe.vimeo-player { background:#000; }
         .detail-hero { min-height:0; }
         .detail-hero > img { display:block; }
@@ -1331,7 +1331,7 @@
         };
 
         const labProjects = [
-            { category: "code", title: "The Map of Life", description: projects["map-of-life"].cardDescription, src: projects["map-of-life"].hero, url: projects["map-of-life"].external, tone: "image" },
+            { category: "code", title: "The Map of Life", description: projects["map-of-life"].cardDescription, src: projects["map-of-life"].hero, projectID: "map-of-life", tone: "image" },
             { category: "code", title: "Creative Coding Experiment 01", url: "https://editor.p5js.org/yiyan25/full/ipDD_ohVv", tone: "live" },
             { category: "code", title: "Creative Coding Experiment 02", url: "https://editor.p5js.org/yiyan25/full/5kTyyjuC2", tone: "live" },
             { category: "code", title: "Mimi — Voice-Interactive Pixel Cat", url: "https://editor.p5js.org/yiyan25/embed/t88l04Lg-", tone: "live" },
