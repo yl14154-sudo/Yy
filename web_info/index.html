@@ -1182,7 +1182,16 @@
             #work .project, #work .project * { transition: none !important; }
         }
     </style>
-</head>
+<style id="lab-pet-home-hover">
+        .lab-hover-info { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:clamp(16px,2.5vw,30px); background:var(--pixel-panel); color:var(--pixel-ink); opacity:0; transform:translateY(8px); transition:opacity .35s ease,transform .35s ease; pointer-events:none; }
+        .lab-hover-info h3 { font-family:inherit; font-size:clamp(21px,2.4vw,30px); }
+        .lab-hover-info p { font-size:14px; line-height:1.6; }
+        .has-hover-info .lab-direct-link { z-index:2; }
+        .has-hover-info:is(:hover,:focus-within) .lab-hover-info { opacity:.96; transform:none; }
+        .has-hover-info .lab-direct-link:focus-visible { outline:3px solid var(--pixel-gold); outline-offset:-5px; }
+        @media(hover:none) { .has-hover-info .lab-hover-info { opacity:.94; transform:none; } }
+        @media(prefers-reduced-motion:reduce) { .lab-hover-info { transition:none; } }
+    </style></head>
 
 <body>
     <header class="navbar">
@@ -1210,7 +1219,7 @@
         <section id="work">
             <div class="section-inner">
                 <h1 class="section-title">Work</h1>
-                <nav class="sub-navigation" aria-label="Work filters"><button class="filter-button work-filter active" data-filter="all">All</button><button class="filter-button work-filter" data-filter="case-study">Case Study</button><button class="filter-button work-filter" data-filter="project">Project</button></nav>
+                <nav class="sub-navigation" aria-label="Work filters"><button class="filter-button work-filter active" data-filter="all">All</button><button class="filter-button work-filter" data-filter="ux-product">UX / Product</button><button class="filter-button work-filter" data-filter="creative-tech">Creative Tech</button></nav>
                 <div class="work-grid" id="work-grid"></div>
             </div>
         </section>
@@ -1305,6 +1314,7 @@
         };
 
         const labProjects = [
+            { category: "code", title: "The Map of Life", src: projects["map-of-life"].hero, url: projects["map-of-life"].external, tone: "image" },
             { category: "code", title: "Creative Coding Experiment 01", url: "https://editor.p5js.org/yiyan25/full/ipDD_ohVv", tone: "live" },
             { category: "code", title: "Creative Coding Experiment 02", url: "https://editor.p5js.org/yiyan25/full/5kTyyjuC2", tone: "live" },
             { category: "code", title: "Mimi — Voice-Interactive Pixel Cat", url: "https://editor.p5js.org/yiyan25/embed/t88l04Lg-", tone: "live" },
@@ -1314,10 +1324,15 @@
             { category: "code", title: "FlowerHand", url: "https://editor.p5js.org/yiyan25/full/uQM5Ug4P4", tone: "live" },
             { category: "code", title: "Self Portrait", url: "https://editor.p5js.org/yiyan25/embed/kc2e9WJjT", tone: "live" },
             { category: "design", title: "Chance — UI/UX Design", src: asset("lab_design.png"), url: "https://www.figma.com/proto/vsZkcz7yvrsFpZRDCuxbz4/Designathon---Chance---UI-UX?node-id=28-3008&starting-point-node-id=28%3A3008&t=nExIPqY5L2h4iIOv-1", tone: "image" },
+            { category: "design", title: "NYU Student Dashboard Redesign", src: projects.dashboard.hero, projectID: "dashboard", tone: "image" },
+            { category: "ai", title: "Pet Home", description: "An AI Agent built for pet-first shopping, personalized discovery, and everyday pet care.", url: "https://app-763327352826.us-central1.run.app/", tone: "live" },
             { category: "media", title: "The Story Of The Chocolate", src: "https://player.vimeo.com/video/1239154045?title=0&byline=0&portrait=0&dnt=1", tone: "vimeo" }
         ];
 
-        const workOrder = ["cattachment", "bloom", "map-of-life", "dashboard", "freshly"];
+        const workOrder = ["cattachment", "bloom", "freshly"];
+        projects.freshly.category = "ux-product";
+        projects.cattachment.category = projects.bloom.category = "creative-tech";
+        projects.bloom.next = "freshly";
 
         function projectCover(project) {
             if (project.cover === "freshly") return `<img class="freshly-cover-image" src="${asset("freshly_case-study/freshly-cover.png")}" alt="Freshly Smart Food Management cover" loading="lazy"><span class="cover-label">CASE STUDY</span>`;
@@ -1326,7 +1341,7 @@
 
         function renderWork() {
             const grid = document.getElementById("work-grid");
-            grid.innerHTML = Object.entries(projects).sort(([first], [second]) => workOrder.indexOf(first) - workOrder.indexOf(second)).map(([id, project]) => `<article class="project" data-category="${project.category}" data-project="${id}" role="button" aria-label="View ${project.title}" tabindex="0"><div class="project-image ${project.cover}">${projectCover(project)}</div><div class="project-info"><h3>${project.title}</h3><p class="project-meta">${project.category === "case-study" ? "Case Study" : "Project"}</p><small>Open project →</small><p class="project-description">${project.cardDescription}</p></div></article>`).join("");
+            grid.innerHTML = workOrder.map(id => [id, projects[id]]).map(([id, project]) => `<article class="project" data-category="${project.category}" data-project="${id}" role="button" aria-label="View ${project.title}" tabindex="0"><div class="project-image ${project.cover}">${projectCover(project)}</div><div class="project-info"><h3>${project.title}</h3><p class="project-meta">${project.category === "case-study" ? "Case Study" : "Project"}</p><small>Open project →</small><p class="project-description">${project.cardDescription}</p></div></article>`).join("");
             grid.querySelectorAll(".project").forEach((card) => { card.addEventListener("click", () => openProject(card.dataset.project)); card.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openProject(card.dataset.project); } }); });
         }
 
@@ -1335,9 +1350,11 @@
             grid.innerHTML = labProjects.map((project) => {
                 let media = project.tone === "live" ? `<iframe title="${project.title}" data-src="${project.url}" loading="lazy" allow="microphone; autoplay; fullscreen" allowfullscreen></iframe>` : project.tone === "vimeo" ? `<iframe class="vimeo-player" src="${project.src}" title="${project.title}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>` : `<img src="${project.src}" alt="${project.title}" loading="lazy">`;
                 const mediaClass = project.tone === "live" ? " lab-media-live" : "";
-                const action = project.url ? `<a class="lab-direct-link" href="${project.url}" target="_blank" rel="noopener" aria-label="Open ${project.title}"></a>` : "";
-                return `<article class="lab-project" data-category="${project.category}"><div class="lab-media${mediaClass}">${media}${action}</div></article>`;
+                const action = project.projectID ? `<a class="lab-direct-link" href="#project-detail" data-lab-project="${project.projectID}" aria-label="View ${project.title}"></a>` : project.url ? `<a class="lab-direct-link" href="${project.url}" target="_blank" rel="noopener" aria-label="Open ${project.title}"></a>` : "";
+                const overlay = project.description ? `<div class="lab-hover-info"><h3>${project.title}</h3><p>${project.description}</p></div>` : "";
+                return `<article class="lab-project${project.description ? " has-hover-info" : ""}" data-category="${project.category}"><div class="lab-media${mediaClass}">${media}${overlay}${action}</div></article>`;
             }).join("");
+            grid.querySelectorAll("[data-lab-project]").forEach(link => link.addEventListener("click", event => { event.preventDefault(); openProject(link.dataset.labProject); }));
             observeLabFrames();
         }
 
