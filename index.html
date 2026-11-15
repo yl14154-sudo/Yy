@@ -1159,6 +1159,29 @@
             }
         }
     </style>
+
+    <style id="work-cover-hover">
+        /* Only the Work gallery covers change; all original detail styles remain intact. */
+        #work .project { min-height: 0; }
+        #work .project-image { border-bottom: 0; }
+        #work .project-image > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        #work .project:hover .project-image > img { transform: none; }
+        #work .project-image::after { content: ""; position: absolute; inset: 0; background: var(--pixel-panel); opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+        #work .project-info { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: clamp(18px, 3vw, 36px); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease, visibility .35s; pointer-events: none; }
+        #work .project-info h3 { font-size: clamp(18px, 2.3vw, 29px); }
+        #work .project-info .project-description { font-size: clamp(12px, 1.2vw, 14px) !important; line-height: 1.55; }
+        #work .project-info .project-meta, #work .project-info small, #work .cover-label { display: none; }
+        #work .project:is(:hover, :focus-visible) .project-image::after { opacity: .95; }
+        #work .project:is(:hover, :focus-visible) .project-info { opacity: 1; visibility: visible; transform: translateY(0); }
+        #work .project:focus-visible { outline: 3px solid var(--pixel-gold); outline-offset: 5px; }
+        @media (hover: none) {
+            #work .project .project-image::after { opacity: .9; background: linear-gradient(transparent, var(--pixel-panel) 40%); }
+            #work .project .project-info { opacity: 1; visibility: visible; transform: none; justify-content: flex-end; gap: 10px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #work .project, #work .project * { transition: none !important; }
+        }
+    </style>
 </head>
 
 <body>
@@ -1208,7 +1231,7 @@
                     <div class="about-content">
                         <div class="about-item"><h2>Introduction</h2><p>Hi, I’m Yiyan.<br><br>An Interactive Media Arts student at NYU Tisch with a minor in Computer Science.<br><br>I’m passionate about exploring the intersection of creativity, technology, and human connection. I love turning imaginative ideas into playful, thoughtful experiences that spark curiosity and bring people closer together.<br><br>To me, technology is more than a tool — it’s a way to explore human emotions and bring more warmth into everyday life.</p></div>
                         <!-- <div class="about-item"><h2>Skill</h2><p class="skill-list">UX Design / Interaction Design / Creative Coding / AI / AR/VR / Physical Computing / Media Art</p></div> -->
-                        <div class="about-item"><h2>Resume</h2><p><a class="resume-link" href="web_info/Luo_Yiyan_Resume_F26.pdf" target="_blank" rel="noopener">View Resume →</a></p></div>
+                        <div class="about-item"><h2>Resume</h2><p><a class="resume-link" href="web_info/Luo_Yiyan_Resume_F26.2.2.pdf" target="_blank" rel="noopener">View Resume →</a></p></div>
                         <div class="about-item"><h2>Anime & Collecting</h2><p>I love exploring anime culture, collecting character merchandise, and sharing my favorite finds and fandom moments on <a href="https://www.xiaohongshu.com/user/profile/65959d6b0000000022006fb5?xsec_token=ABlB8daGpgrno0v5_aDaSGr3dQMOxZg9ehx-tTETrouDc%3D&amp;xsec_source=pc_search" target="_blank" rel="noopener">Xiaohongshu</a>.</p></div>
                         <div class="about-item"><h2>AI & Visual Exploration</h2><p>I experiment with AI-generated imagery to explore aesthetics, colors, and visual storytelling, sharing my creations on <a href="https://www.instagram.com/aiart_koenako/" target="_blank" rel="noopener">Instagram</a>.</p></div>
                     </div>
@@ -1234,8 +1257,8 @@
     </section>
 
     <script>
-        const asset = (path) => encodeURI((location.pathname.includes("/web_info/") ? "" : "web_info/") + path);
-        document.querySelector(".resume-link").href = asset("Luo_Yiyan_Resume_F26.pdf");
+        const asset = (path) => encodeURI("web_info/" + path);
+        document.querySelector(".resume-link").href = asset("Luo_Yiyan_Resume_F26.2.2.pdf");
         const figmaEmbed = (url) => `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`;
 
         const projects = {
@@ -1265,7 +1288,7 @@
                 ], next: "bloom"
             },
             bloom: {
-                category: "project", title: "Bloom Guard — A Wearable Exhibited at Tandon Gallery", cardDescription: "A wearable installation that turns unconscious finger-biting into a gentle moment of self-awareness through sensing, light, and vibration.", subtitle: "Bloom Guard: A Wearable Installation for Self-Awareness of Unconscious Bodily Harm", cover: "image", hero: asset("bloom-guard/IMG_4713.JPG"), video: "https://player.vimeo.com/video/1239154621?title=0&byline=0&portrait=0&dnt=1", images: [asset("bloom-guard/IMG_4713.JPG")], sections: [
+                category: "project", title: "Bloom Guard — A Wearable Exhibited at Tandon Gallery", cardDescription: "A wearable installation that turns unconscious finger-biting into a gentle moment of self-awareness through sensing, light, and vibration.", subtitle: "Bloom Guard: A Wearable Installation for Self-Awareness of Unconscious Bodily Harm", cover: "image", hero: asset("bloom-guard/cover.jpg"), video: "https://player.vimeo.com/video/1239154621?title=0&byline=0&portrait=0&dnt=1", images: [asset("bloom-guard/IMG_4713.JPG")], sections: [
                     ["Overview", "Bloom Guard is a soft wearable that explores the relationship between stress, emotion, and unconscious bodily habits."],
                     ["How It Works", "Inspired by my own finger-biting habit, the piece uses an Arduino BLE Sense, machine learning, and a pulse sensor to recognize biting-related movements. When the behavior is detected, a small flower on the glove lights up and gently vibrates, bringing attention back to the body."],
                     ["Idea", "The flower represents the fingers — fragile, living, and vulnerable. Rather than correcting the behavior, Bloom Guard creates a moment of awareness: a quiet conversation between the body and the self."]
@@ -1282,6 +1305,8 @@
         };
 
         const labProjects = [
+            { category: "code", title: "Creative Coding Experiment 01", url: "https://editor.p5js.org/yiyan25/full/ipDD_ohVv", tone: "live" },
+            { category: "code", title: "Creative Coding Experiment 02", url: "https://editor.p5js.org/yiyan25/full/5kTyyjuC2", tone: "live" },
             { category: "code", title: "Mimi — Voice-Interactive Pixel Cat", url: "https://editor.p5js.org/yiyan25/embed/t88l04Lg-", tone: "live" },
             { category: "code", title: "CatMood Lab", url: "https://editor.p5js.org/yiyan25/full/I696yvisx", tone: "live" },
             { category: "code", title: "Hand-Controlled Cat Puppet", url: "https://editor.p5js.org/yiyan25/full/lU0ijay2G", tone: "live" },
@@ -1301,8 +1326,8 @@
 
         function renderWork() {
             const grid = document.getElementById("work-grid");
-            grid.innerHTML = Object.entries(projects).sort(([first], [second]) => workOrder.indexOf(first) - workOrder.indexOf(second)).map(([id, project]) => `<article class="project" data-category="${project.category}" data-project="${id}" tabindex="0"><div class="project-image ${project.cover}">${projectCover(project)}</div><div class="project-info"><h3>${project.title}</h3><p class="project-meta">${project.category === "case-study" ? "Case Study" : "Project"}</p><small>Open project →</small><p class="project-description">${project.cardDescription}</p></div></article>`).join("");
-            grid.querySelectorAll(".project").forEach((card) => { card.addEventListener("click", () => openProject(card.dataset.project)); card.addEventListener("keydown", (event) => { if (event.key === "Enter") openProject(card.dataset.project); }); });
+            grid.innerHTML = Object.entries(projects).sort(([first], [second]) => workOrder.indexOf(first) - workOrder.indexOf(second)).map(([id, project]) => `<article class="project" data-category="${project.category}" data-project="${id}" role="button" aria-label="View ${project.title}" tabindex="0"><div class="project-image ${project.cover}">${projectCover(project)}</div><div class="project-info"><h3>${project.title}</h3><p class="project-meta">${project.category === "case-study" ? "Case Study" : "Project"}</p><small>Open project →</small><p class="project-description">${project.cardDescription}</p></div></article>`).join("");
+            grid.querySelectorAll(".project").forEach((card) => { card.addEventListener("click", () => openProject(card.dataset.project)); card.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openProject(card.dataset.project); } }); });
         }
 
         function renderLab() {
