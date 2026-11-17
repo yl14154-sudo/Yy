@@ -1310,7 +1310,7 @@
 
     <section id="project-detail">
         <div class="project-detail-container">
-            <button class="back-button" onclick="backToWork()">← Back to Work</button>
+            <button class="back-button" onclick="backToProjects()">← Back to Work</button>
             <div class="detail-header"><h1 id="detail-title"></h1><p class="detail-subtitle" id="detail-subtitle"></p></div>
             <div class="detail-hero" id="detail-hero"></div>
             <div class="detail-content" id="detail-content"></div>
@@ -1416,7 +1416,16 @@
         const workOrder = ["cattachment", "bloom", "freshly"];
         projects.freshly.category = "ux-product";
         projects.cattachment.category = projects.bloom.category = "creative-tech";
-        projects.bloom.next = "freshly";
+        const projectCollections = {
+            work: workOrder,
+            lab: labProjects.filter(project => project.projectID).map(project => project.projectID)
+        };
+        function projectCollection(projectID) {
+            return projectCollections.work.includes(projectID) ? "work" : "lab";
+        }
+        Object.values(projectCollections).forEach(ids => ids.forEach((id, index) => {
+            projects[id].next = ids[(index + 1) % ids.length];
+        }));
 
         function projectCover(project) {
             if (project.cover === "freshly") return `<img class="freshly-cover-image" src="${asset("freshly_case-study/freshly-cover.png")}" alt="Freshly Smart Food Management cover" loading="lazy"><span class="cover-label">CASE STUDY</span>`;
@@ -1463,6 +1472,8 @@
             const project = projects[projectID];
             if (!project) return;
             resetDetailMedia();
+            const collection = projectCollection(projectID);
+            document.querySelector("#project-detail .back-button").textContent = collection === "lab" ? "← Back to Lab" : "← Back to Work";
             document.getElementById("main-site").style.display = "none";
             document.getElementById("project-detail").style.display = "block";
             document.getElementById("detail-title").textContent = project.title;
@@ -1481,6 +1492,7 @@
             imageGrid.innerHTML = project.images && project.images.length > 1 ? project.images.map((image) => `<div class="detail-image ${project.cover === "freshly" ? "freshly-screen" : ""}"><img src="${image}" alt="${project.title} documentation" loading="lazy"></div>`).join("") : "";
             window.currentProject = projectID;
             document.getElementById("next-project-button").style.display = project.next ? "block" : "none";
+            document.getElementById("next-project-button").setAttribute("aria-label", project.next ? `Next project: ${projects[project.next].title}` : "Next project");
             window.scrollTo({ top: 0, behavior: "instant" });
         }
 
@@ -1494,7 +1506,7 @@
             });
         }
 
-        function backToWork() { resetDetailMedia(); document.getElementById("project-detail").style.display = "none"; document.getElementById("main-site").style.display = "block"; setTimeout(() => document.getElementById("work").scrollIntoView({ behavior: "smooth" }), 50); }
+        function backToProjects() { const collection = projectCollection(window.currentProject); resetDetailMedia(); document.getElementById("project-detail").style.display = "none"; document.getElementById("main-site").style.display = "block"; setTimeout(() => document.getElementById(collection).scrollIntoView({ behavior: "smooth" }), 50); }
         function nextProject() { const current = projects[window.currentProject]; if (current?.next) openProject(current.next); }
         function showHome() { resetDetailMedia(); document.getElementById("project-detail").style.display = "none"; document.getElementById("main-site").style.display = "block"; setTimeout(() => document.getElementById("home").scrollIntoView({ behavior: "smooth" }), 50); }
         function showSection(id) { resetDetailMedia(); document.getElementById("project-detail").style.display = "none"; document.getElementById("main-site").style.display = "block"; setTimeout(() => document.getElementById(id).scrollIntoView({ behavior: "smooth" }), 50); }
