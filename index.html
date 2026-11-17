@@ -1235,7 +1235,7 @@
         @keyframes portrait-rise-visible { from { transform:translateY(18px); } to { transform:translateY(0); } }
         #home .home-pixel-portrait { opacity:1; animation:portrait-rise-visible .8s ease-out; }
         @media(prefers-reduced-motion:reduce) { #home .home-pixel-portrait { animation:none; } }
-    </style></head>
+    </style><style id="simplified-home-heading">#home .home-text::before { display:none; }</style></head>
 
 <body>
     <header class="navbar">
@@ -1248,7 +1248,6 @@
         <section id="home">
             <div class="section-inner">
                 <div class="home-text">
-                    <p class="home-kicker">Product Designer &amp; Creative Technologist</p>
                     <h1>Hi! I’m <span>Yiyan.</span></h1>
                     <p>I design playful, human-centered digital experiences through interaction design, prototyping, and creative technology.</p>
                     <a class="home-link" href="#work">View selected work →</a>
