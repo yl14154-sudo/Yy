@@ -1208,6 +1208,13 @@
         .lab-media iframe.vimeo-player { background:#000; }
         .detail-hero { min-height:0; }
         .detail-hero > img { display:block; }
+    </style><style id="freshly-case-study-layout">
+        .detail-content.freshly-case-study { width:100%; max-width:none; }
+        .freshly-case-study .detail-section p { margin:0 0 16px; }
+        .freshly-case-study .detail-section ul { max-width:70ch; margin:0 0 20px; padding-left:24px; color:var(--pixel-paper); font-family:"Manrope","Trebuchet MS",sans-serif; font-size:16px; line-height:1.75; }
+        .freshly-case-study .detail-section li { margin-bottom:8px; }
+        .freshly-case-study .case-study-figure { width:100%; margin:28px 0 0; }
+        .freshly-case-study .case-study-figure img { display:block; width:100%; height:auto; margin:0; padding:0; border:0; box-shadow:8px 8px 0 #9b7d9d; }
     </style></head>
 
 <body>
@@ -1299,12 +1306,41 @@
             },
             freshly: {
                 category: "case-study", title: "Freshly — Smart Food Management App", cardDescription: "A mobile food-management app that connects inventory tracking, expiration reminders, and recipe discovery to reduce waste and decision fatigue.", subtitle: "Freshly: Food Inventory & Recipe Mobile App", cover: "freshly", hero: asset("freshly_case-study/freshly-cover.png"), prototype: figmaEmbed("https://www.figma.com/proto/C4JpgPJAJj11A7OMBjE9ps/Final-Project-Fridge?node-id=292-344&starting-point-node-id=292%3A344"), external: "https://www.figma.com/proto/C4JpgPJAJj11A7OMBjE9ps/Final-Project-Fridge?node-id=292-344&starting-point-node-id=292%3A344", sections: [
-                    ["Overview", "I designed a mobile app to help people keep track of their food and decide what to cook with what they already have. The app brings inventory management, expiration reminders, and recipe recommendations into one place, with the goal of reducing food waste and the effort of planning everyday meals."],
-                    ["The Challenge", "Ingredients are easy to forget once they disappear into the fridge or pantry. Users also found manual tracking tedious, making inventories difficult to maintain. The design challenge was to make food tracking easier while helping users turn available ingredients into meal ideas before they expire."],
-                    ["Research & Insights", "I conducted user interviews and a competitive analysis to understand how people track ingredients and choose meals. The products I reviewed addressed separate parts of this process: smart refrigerators required costly hardware, while recipe apps and shopping-list tools offered limited inventory support. These findings guided a design that connects adding food, checking expiration dates, and choosing recipes in one workflow."],
-                    ["Design Approach", "I designed multiple scanning options to simplify adding items, paired with an inventory view that gives expiring ingredients greater visibility. Expiration alerts and AI-powered recipe suggestions connect food tracking to meal planning, while food-waste summaries help users review what they discard. User feedback informed layout revisions and the placement of key information."],
-                    ["Testing & Refinement", "I developed the concept through low-fidelity sketches, multiple prototype versions, and several rounds of iteration. The final prototype prioritizes easier item entry, clearer expiration information, and recipe discovery based on available ingredients. These decisions aim to help users act on their inventory with less manual effort and fewer meal-planning decisions."]
-                ], next: "cattachment"
+    [
+        "Overview",
+        "<p>Freshly is a mobile food-management concept I designed to help people use what they already have. It connects ingredient tracking, expiration reminders, and recipe discovery in one experience.</p>"
+    ],
+    [
+        "Problem",
+        "<p>I noticed that people around me who cook often forget when their food expires. Ingredients go unused, groceries get purchased twice, and deciding what to cook becomes another daily task.</p><p><strong>Design question:</strong> How might I help people use food before it expires without adding work to their routine?</p>"
+    ],
+    [
+        "Research",
+        "<p>I interviewed 15 people around me who had cooking experience and regularly used a refrigerator. I also compared Samsung Smart Fridge, Yummly, and AnyList.</p><p>Participants relied on memory, overlooked stored food, and often made meal decisions at the last minute. The research identified three needs:</p><ul><li><strong>Less effort:</strong> Make adding ingredients easier.</li><li><strong>More visibility:</strong> Bring expiring food into view.</li><li><strong>A clear next step:</strong> Connect available ingredients to meal ideas.</li></ul>"
+    ],
+    [
+        "Ideation",
+        "<p>I connected inventory tracking with meal planning so that reminders lead to useful actions.</p><ul><li><strong>Simplify entry:</strong> Offer scanning options alongside manual input.</li><li><strong>Prioritize freshness:</strong> Highlight ingredients that need attention.</li><li><strong>Support decisions:</strong> Recommend meals using available food.</li></ul><p>A mobile experience makes this information accessible while shopping or planning meals.</p>"
+    ],
+    [
+        "Wireframes",
+        "<p>A persistent five-tab navigation connects the main tasks, with ingredient entry positioned centrally for quick access. I refined the page structure through multiple prototype versions before developing the visual design.</p>",
+        "freshly_case-study/wireframes-navigation.png"
+    ],
+    [
+        "Visual Design",
+        "<p>The final interface makes everyday food-management tasks easy to find:</p><ul><li><strong>Home:</strong> Recipe ideas and expiring ingredients at a glance.</li><li><strong>Fridge:</strong> Searchable inventory with freshness and category filters.</li><li><strong>Scanner:</strong> Separate entry methods with a manual alternative.</li></ul><p>Warm colors, rounded cards, and food photography create an approachable everyday tool.</p>"
+    ],
+    [
+        "Design System",
+        "",
+        "freshly_case-study/design-system.png"
+    ],
+    [
+        "Testing",
+        "<p>User feedback guided three key revisions:</p><ul><li><strong>Competing homepage content:</strong> I prioritized near-expiry ingredients and meal suggestions.</li><li><strong>Tedious ingredient entry:</strong> I expanded scanning options and retained manual input.</li><li><strong>Difficult-to-read handwriting:</strong> I reserved handwritten typography for headings and used clearer body text.</li></ul><p>These changes focused the experience on easier entry, clearer priorities, and quicker meal decisions.</p>"
+    ]
+], next: "cattachment"
             },
             cattachment: {
                 category: "project", title: "Cattachment — An Installation Exhibited at NYU ITP Spring Show 2026", cardDescription: "An interactive installation that makes attachment styles tangible through playful encounters with three responsive cats.", subtitle: "Cattachment: An interactive exploration of attachment", cover: "image", hero: asset("Cattachment/IMG_4711.JPG"), video: "https://player.vimeo.com/video/1239159446?title=0&byline=0&portrait=0&dnt=1&transparent=0", images: [asset("Cattachment/IMG_4711.JPG")], sections: [
@@ -1402,7 +1438,9 @@
             document.getElementById("detail-subtitle").textContent = project.subtitle;
             const hero = document.getElementById("detail-hero");
             hero.innerHTML = project.cover === "freshly" ? `<img class="freshly-cover-image" src="${asset("freshly_case-study/freshly-cover.png")}" alt="Freshly Smart Food Management cover">` : `<img src="${project.hero}" alt="${project.title}">`;
-            document.getElementById("detail-content").innerHTML = project.sections.map(([title, text]) => `<div class="detail-section"><h2>${title}</h2><p>${text}</p></div>`).join("");
+            const detailContent = document.getElementById("detail-content");
+            detailContent.classList.toggle("freshly-case-study", projectID === "freshly");
+            detailContent.innerHTML = project.sections.map(([title, text, sectionImage]) => `<div class="detail-section"><h2>${title}</h2>${projectID === "freshly" ? text : `<p>${text}</p>`}${sectionImage ? `<figure class="case-study-figure"><img src="${asset(sectionImage)}" alt="Freshly ${title}" loading="lazy"></figure>` : ""}</div>`).join("");
             const prototype = document.getElementById("detail-prototype");
             prototype.innerHTML = project.prototype ? `<h2>Prototype</h2><iframe src="${project.prototype}" title="${project.title} prototype" allowfullscreen></iframe><a class="home-link" href="${project.external}" target="_blank" rel="noopener">Open prototype in Figma →</a>` : project.video ? `<h2>Process video</h2><iframe class="vimeo-player" src="${project.video}" title="${project.title} process video" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>` : "";
             const imageGrid = document.getElementById("detail-images");
