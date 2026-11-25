@@ -886,8 +886,8 @@
         .freshly-cover { background: var(--pixel-mint); }
         .freshly-cover img { border-color: var(--pixel-ink); box-shadow: 5px 5px 0 #C5B3D3; }
         .project-info h3 { color: var(--pixel-ink); }
-        .project-meta, .project-description { color: #625669 !important; }
-        .project-info small { color: #625669; }
+        .project-meta, .project-description { color: #514757 !important; }
+        .project-info small { color: #514757; }
 
         .lab-grid {
             grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1193,7 +1193,7 @@
         @media(prefers-reduced-motion:reduce) { .lab-hover-info { transition:none; } }
     </style><style id="shared-hover-type">
         #work .project-info h3, #lab .lab-hover-info h3 { font-family:"Space Grotesk","Trebuchet MS",sans-serif; font-size:clamp(18px,2.3vw,29px); font-weight:700; line-height:1.2; letter-spacing:.01em; text-transform:uppercase; margin:0; }
-        #work .project-info .project-description, #lab .lab-hover-info p { font-family:"Manrope","Trebuchet MS",sans-serif; font-size:clamp(12px,1.2vw,14px) !important; font-weight:400 !important; line-height:1.55 !important; letter-spacing:0 !important; text-transform:none !important; color:#625669 !important; margin:0; }
+        #work .project-info .project-description, #lab .lab-hover-info p { font-family:"Manrope","Trebuchet MS",sans-serif; font-size:clamp(12px,1.2vw,14px) !important; font-weight:400 !important; line-height:1.55 !important; letter-spacing:0 !important; text-transform:none !important; color:#514757 !important; margin:0; }
     </style><style id="flush-gallery-covers">
         #work .project-image, #lab .lab-media { padding:0; gap:0; overflow:hidden; }
         #work .project-image > img, #lab .lab-media > img { display:block; width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center; }
@@ -1240,11 +1240,11 @@
             --rose:#F5CBCB; --blush:#FFE2E2; --cream:#FBEFEF; --olive:#C5B3D3;
             --pixel-ink:#3D3543; --pixel-night:var(--cream); --pixel-sea:var(--blush);
             --pixel-panel:var(--cream); --pixel-paper:var(--cream); --pixel-coral:var(--rose);
-            --pixel-gold:var(--cream); --pixel-mint:var(--olive); --pixel-blue:#625669;
+            --pixel-gold:var(--cream); --pixel-mint:var(--olive); --pixel-blue:#514757;
             --pixel-purple:var(--olive); --pixel-line:var(--pixel-ink); --pixel-shadow:var(--olive);
-            --os-ink:var(--pixel-ink); --os-muted:#625669; --os-pink:#725776;
-            --os-cyan:#625669; --os-lime:var(--olive); --os-line:var(--pixel-ink);
-            --ink:var(--pixel-ink); --muted:#625669; --paper:var(--cream);
+            --os-ink:var(--pixel-ink); --os-muted:#514757; --os-pink:#725776;
+            --os-cyan:#514757; --os-lime:var(--olive); --os-line:var(--pixel-ink);
+            --ink:var(--pixel-ink); --muted:#514757; --paper:var(--cream);
         }
         body { color:var(--pixel-ink); background-color:var(--cream); }
         .navbar { background:var(--cream); border-color:var(--pixel-ink); box-shadow:0 5px 0 var(--rose); }
@@ -1273,6 +1273,45 @@
         .resume-link,.about-item p a:not(.resume-link) { color:#725776; }
         .home-pixel-portrait { border-color:var(--pixel-ink); }
         #contact .contact-content p:hover { color:var(--pixel-ink); }
+    </style><style id="pink-lavender-visual-hierarchy">
+        /* Base ~60%, supporting surfaces ~30%, focused accents ~10%. */
+        :root { --text-primary:#342D3B; --text-secondary:#514757; --accent:#C5B3D3; --surface:#FFE2E2; --base:#FBEFEF; --detail:#F5CBCB; --pixel-ink:var(--text-primary); --pixel-line:var(--text-primary); }
+        body,#home,#work,#about,#contact,#project-detail { background-color:var(--base); }
+        body::before { opacity:.06; }
+        #home { background-image:linear-gradient(rgba(197,179,211,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(197,179,211,.08) 1px,transparent 1px); }
+        #lab { background:var(--surface); }
+        .navbar { background:var(--base); border-bottom-color:var(--accent); box-shadow:0 3px 0 var(--detail); }
+        .logo { background:transparent; }
+        .navigation { background:transparent; border-color:var(--accent); }
+        .navigation a:hover { background:var(--surface); color:var(--text-primary); }
+        .contact-link { background:var(--base); border-color:var(--accent); box-shadow:3px 3px 0 var(--detail); color:var(--text-primary); }
+        #home .home-text h1,.detail-header h1,.section-title,#contact .section-title { color:var(--text-primary); text-shadow:none; }
+        #home .home-text h1 span { color:var(--text-primary); box-shadow:inset 0 -.1em 0 var(--detail); }
+        #home .home-text p,.detail-section p,.detail-subtitle,.freshly-case-study .detail-section ul { color:var(--text-secondary); }
+        #home::before { background:var(--surface); border-color:var(--accent); box-shadow:10px 10px 0 var(--detail); }
+        .home-pixel-portrait { border-color:var(--text-primary); background:var(--accent); box-shadow:8px 8px 0 var(--detail); }
+        .home-link,.next-project button { background:var(--accent); border-color:var(--text-primary); color:var(--text-primary); box-shadow:4px 4px 0 var(--detail); }
+        .home-link:hover,.next-project button:hover { background:var(--detail); }
+        .filter-button { color:var(--text-secondary); border-color:var(--accent); background:transparent; }
+        .filter-button.active { color:var(--text-primary); background:var(--accent); border-color:var(--text-primary); }
+        .filter-button:hover:not(.active) { color:var(--text-primary); background:var(--detail); border-color:var(--accent); }
+        .section-title::before { background:var(--detail)!important; border-color:var(--accent)!important; color:var(--text-primary)!important; }
+        .project,.lab-project,.lab-project:nth-child(n) { border-color:var(--accent); box-shadow:5px 5px 0 var(--detail)!important; }
+        .project:hover,.lab-project:hover { border-color:var(--text-primary); box-shadow:7px 7px 0 var(--accent)!important; }
+        .about-layout,#about .outside-art { background:var(--surface); border-color:var(--accent); box-shadow:6px 6px 0 var(--detail); }
+        .about-item h2::before { background:var(--accent); border-color:var(--text-primary); }
+        .about-photo { border-color:var(--accent); box-shadow:6px 6px 0 var(--detail); }
+        .about-item p,.outside-art-grid p { color:var(--text-secondary); }
+        .resume-link,.about-item p a:not(.resume-link) { color:var(--text-primary); text-decoration:underline; text-underline-offset:4px; }
+        .back-button { background:var(--base); border-color:var(--accent); box-shadow:3px 3px 0 var(--detail); }
+        .detail-hero,.detail-image,.detail-prototype iframe,.detail-prototype video { border-color:var(--accent); box-shadow:6px 6px 0 var(--detail); }
+        .detail-prototype iframe.vimeo-player { border:0; box-shadow:6px 6px 0 var(--detail); }
+        .freshly-case-study .case-study-figure img { box-shadow:6px 6px 0 var(--detail); }
+        .detail-section h2,.detail-prototype h2 { color:var(--text-primary); }
+        .next-project { border-top-color:var(--accent); }
+        #contact { border-top:2px solid var(--accent); }
+        #contact .contact-content { color:var(--text-primary); }
+        #contact .contact-content a:hover { text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:8px; }
     </style></head>
 
 <body>
